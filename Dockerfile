@@ -18,7 +18,7 @@ RUN echo "This is a demo file inside the Samba share." > /srv/sambashare/demo.tx
     chown demo:demo /srv/sambashare/demo.txt
 
 # Configure Samba
-RUN bash -c 'cat > /etc/samba/smb.conf <<EOF
+RUN cat > /etc/samba/smb.conf <<EOF
 [global]
    workgroup = WORKGROUP
    server string = Demo Samba Server
@@ -35,7 +35,7 @@ RUN bash -c 'cat > /etc/samba/smb.conf <<EOF
    force group = demo
    create mask = 0664
    directory mask = 0775
-EOF'
+EOF
 
 # Add SMB password for the user
 RUN (echo "Password123!"; echo "Password123!") | smbpasswd -a demo
@@ -45,3 +45,4 @@ EXPOSE 137/udp 138/udp 139/tcp 445/tcp
 
 # Start smbd + nmbd in the foreground
 CMD ["/bin/sh", "-c", "smbd --foreground --no-process-group & nmbd --foreground --no-process-group"]
+
