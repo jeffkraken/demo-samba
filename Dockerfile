@@ -1,4 +1,4 @@
-FROM centos:stream9
+FROM rockylinux:9
 
 # Install Samba and utilities
 RUN dnf install -y samba samba-common-tools shadow-utils && \
@@ -45,4 +45,5 @@ EXPOSE 137/udp 138/udp 139/tcp 445/tcp
 
 # Start smbd + nmbd in the foreground
 CMD ["/bin/sh", "-c", "smbd --foreground --no-process-group & nmbd --foreground --no-process-group"]
+
 
