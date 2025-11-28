@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  samba:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: samba-demo
+    hostname: samba-demo
+    ports:
+      - "445:445"
+      - "139:139"
+      - "137:137/udp"
+      - "138:138/udp"
+    restart: unless-stopped
