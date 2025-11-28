@@ -7,6 +7,8 @@ services:
       dockerfile: Dockerfile
     container_name: samba-demo
     hostname: samba-demo
+    security_opt:
+      - label=disable
     ports:
       - "445:445"
       - "139:139"
